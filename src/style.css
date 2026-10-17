@@ -256,7 +256,6 @@ body {
 .app-shell {
   position: relative;
   isolation: isolate;
-  overflow: clip;
   background: transparent;
 }
 
@@ -519,4 +518,38 @@ h1 em {
 
 @media (prefers-reduced-motion: reduce) {
   .app-shell::before { animation: none !important; }
+}
+
+/* Keep the sticky toolbar opaque above animated/content stacking layers. */
+.topbar {
+  z-index: 1000;
+  isolation: isolate;
+  background: rgba(255, 255, 255, .97);
+  box-shadow: 0 5px 20px rgba(39, 42, 91, .10);
+}
+
+/* A deeper animated gradient stays legible even while comparison is disabled. */
+.primary-button {
+  color: #fff;
+  background: linear-gradient(110deg, #4338ca, #6d28d9 48%, #be185d 76%, #4338ca);
+  background-size: 260% 100%;
+  animation: button-gradient-flow 7s ease-in-out infinite;
+  box-shadow: 0 9px 24px -8px rgba(79, 70, 229, .7);
+}
+@keyframes button-gradient-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.primary-button:hover:not(:disabled) {
+  box-shadow: 0 14px 30px -8px rgba(109, 40, 217, .62);
+}
+.primary-button:disabled {
+  opacity: .9;
+  filter: saturate(.82);
+  cursor: not-allowed;
+  box-shadow: 0 6px 18px -8px rgba(79, 70, 229, .48);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-button { animation: none !important; }
 }

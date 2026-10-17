@@ -1,6 +1,6 @@
 # Revise
 
-**A local-first document revision comparison tool.** Compare two PDFs or text files line by line, review what changed, and export a Markdown summary. Revise is deliberately a text-difference tool—not an automated quality, safety, or compliance verdict.
+**A local-first document revision comparison tool.** Compare PDFs, Word documents, and text files line by line, review what changed, and export a Markdown summary. Revise is deliberately a text-difference tool—not an automated quality, safety, or compliance verdict.
 
 ![Revise comparison workspace](assets/revise-preview.png)
 
@@ -10,7 +10,7 @@ Comparing procedure and policy revisions often means scanning long documents for
 
 ## Features
 
-- Compare PDF, TXT, and Markdown files side by side.
+- Compare PDF, DOCX, TXT, and Markdown files side by side.
 - Extract selectable PDF text in the browser with PDF.js.
 - See additions, removals, and changed lines with line numbers.
 - Filter to changed lines or search within the comparison.
@@ -21,7 +21,7 @@ Comparing procedure and policy revisions often means scanning long documents for
 ## Privacy and limitations
 
 - Files are read and processed in your browser; Revise has no upload service, account system, analytics, or backend.
-- Scanned/image-only PDFs are not OCR'd. Text extraction may flatten tables, columns, or page layout.
+- Scanned/image-only PDFs are not OCR'd. Text extraction may omit or flatten tables, columns, images, formatting, or page layout in PDF and Word documents.
 - A text diff cannot determine whether a change is correct, safe, or compliant. Always review the original documents before making decisions.
 - Maximum input file size: 30 MB per document.
 
@@ -37,6 +37,14 @@ npm run dev
 ```
 
 Open the local URL printed by Vite (usually `http://localhost:5173`). These steps work on any computer with Git and Node.js installed; the repository is public, so no GitHub login is needed.
+
+## Supported formats
+
+- **PDF:** compares selectable text; scanned/image-only PDFs require OCR, which Revise does not currently include.
+- **Word:** supports modern `.docx` files. Legacy `.doc` files are not supported. Comparison uses extracted text and does not preserve Word formatting, tracked changes, tables, or images.
+- **Text:** supports `.txt` and `.md` files.
+
+Files are parsed locally in your browser. Revise does not upload them to a server.
 
 ## Build and host remotely
 

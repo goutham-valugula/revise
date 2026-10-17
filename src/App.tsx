@@ -5,7 +5,7 @@ import type { DiffRow } from './compare';
 import { extractPdfText } from './pdf';
 
 type Side = 'before' | 'after';
-type DocumentText = { name: string; text: string; kind: 'PDF' | 'TEXT'; pages?: number };
+type DocumentText = { name: string; text: string; kind: 'PDF' | 'WORD' | 'TEXT'; pages?: number };
 type Progress = { side: Side; page: number; total: number } | null;
 
 const sampleBefore = `Quality review template — fictional sample\n\nPurpose: Demonstrate document revision differences.\nScope: Internal process.\nOwner: Quality lead.\nReview interval: 12 months.\nRecords: Save a signed review record.`;
@@ -59,7 +59,7 @@ function FileSlot({
 
   return (
     <div className={`file-slot ${side} ${dragging ? 'dragging' : ''} ${document ? 'has-file' : ''}`}>
-      <input ref={inputRef} className="visually-hidden" type="file" accept=".pdf,.txt,.md,application/pdf,text/plain,text/markdown" onChange={handleSelect} aria-label={`Choose ${title.toLowerCase()}`} />
+      <input ref={inputRef} className="visually-hidden" type="file" accept=".pdf,.docx,.txt,.md,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,text/markdown" onChange={handleSelect} aria-label={`Choose ${title.toLowerCase()}`} />
       <div
         className="drop-area"
         onDragOver={(event) => { event.preventDefault(); setDragging(true); }}
@@ -87,7 +87,7 @@ function FileSlot({
         ) : (
           <button className="upload-prompt" disabled={disabled} onClick={() => inputRef.current?.click()}>
             <span className="upload-icon"><Icon name="upload" size={19} /></span>
-            <span><strong>Drop a file or <u>browse</u></strong><small>PDF, TXT, or Markdown · up to 30 MB</small></span>
+            <span><strong>Drop a file or <u>browse</u></strong><small>PDF, DOCX, TXT, or Markdown · up to 30 MB</small></span>
           </button>
         )}
       </div>
@@ -110,13 +110,13 @@ function App() {
     setError('');
     setRows(null);
     if (file.size > 30 * 1024 * 1024) {
-      setError('That file is over 30 MB. Choose a smaller PDF or text file.');
+      setError('That file is over 30 MB. Choose a smaller document.');
       return;
     }
 
     const extension = file.name.split('.').pop()?.toLowerCase();
-    if (extension !== 'pdf' && extension !== 'txt' && extension !== 'md') {
-      setError('Revise reads PDF, TXT, and Markdown files.');
+    if (!['pdf', 'docx', 'txt', 'md'].includes(extension ?? '')) {
+      setError('Revise reads PDF, DOCX, TXT, and Markdown files.');
       return;
     }
 
@@ -126,6 +126,12 @@ function App() {
       if (extension === 'pdf') {
         const parsed = await extractPdfText(file, (page, total) => setProgress({ side, page, total }));
         next = { name: file.name, text: parsed.text, kind: 'PDF', pages: parsed.pages };
+      } else if (extension === 'docx') {
+        const { default: mammoth } = await import('mammoth');
+        const parsed = await mammoth.extractRawText({ arrayBuffer: await file.arrayBuffer() });
+        const text = parsed.value.trim();
+        if (!text) throw new Error('This Word document contains no readable text.');
+        next = { name: file.name, text, kind: 'WORD' };
       } else {
         next = { name: file.name, text: await file.text(), kind: 'TEXT' };
       }
@@ -199,7 +205,7 @@ function App() {
           <div className="intro-copy">
             <p className="eyebrow"><span className="eyebrow-line" /> DOCUMENT REVISION REVIEW</p>
             <h1>Know what changed.<br /><em>Keep the review yours.</em></h1>
-            <p className="intro-text">Compare two document versions line by line. Your files stay in this browser—no upload, no account, no automated verdict.</p>
+            <p className="intro-text">Compare PDF, Word, text, and Markdown revisions line by line. Your files stay in this browser—no upload, no account, no automated verdict.</p>
           </div>
           <div className="hero-stamp" aria-hidden="true"><span className="stamp-ring"><Icon name="spark" size={25} /></span><span>Clear changes.<br />Human judgment.</span></div>
         </section>
@@ -215,7 +221,7 @@ function App() {
             <FileSlot side="after" document={after} progress={progress} disabled={working} onFile={loadFile} onClear={clearFile} />
           </div>
           <div className="compare-actions">
-            <div className="format-note"><Icon name="file" size={16} /><span>PDF, TXT, Markdown</span><i /> <span>Max 30 MB each</span></div>
+            <div className="format-note"><Icon name="file" size={16} /><span>PDF, Word, TXT, Markdown</span><i /> <span>Max 30 MB each</span></div>
             <button className="primary-button" onClick={compare} disabled={!before || !after || working}>
               Compare revisions <Icon name="arrow" size={17} />
             </button>
@@ -252,7 +258,7 @@ function App() {
                 </div>
               )) : <div className="no-results">No lines match that search.</div>}
             </div>
-            <p className="review-note"><span className="review-mark">i</span> Text extraction can lose page layout, tables, or handwriting. Check the original documents before acting on a change.</p>
+            <p className="review-note"><span className="review-mark">i</span> Text extraction can lose formatting, tables, images, or handwriting. Check the original documents before acting on a change.</p>
           </section>
         )}
 

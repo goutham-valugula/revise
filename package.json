@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Compare PDF and text document revisions privately in your browser.",
+  "description": "Compare PDF, Word, and text document revisions privately in your browser.",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "diff": "^9.0.0",
+    "mammoth": "^1.13.0",
     "pdfjs-dist": "^6.4.299",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"

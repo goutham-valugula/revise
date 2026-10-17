@@ -27,14 +27,27 @@ Comparing procedure and policy revisions often means scanning long documents for
 
 ## Run locally
 
-Requires Node.js 22.12+.
+Requires Node.js 22.13+ (or Node.js 24+).
 
 ```bash
-npm install
+git clone https://github.com/goutham-valugula/revise.git
+cd revise
+npm ci
 npm run dev
 ```
 
-Create a production build with `npm run build`; preview it with `npm run preview`.
+Open the local URL printed by Vite (usually `http://localhost:5173`). These steps work on any computer with Git and Node.js installed; the repository is public, so no GitHub login is needed.
+
+## Build and host remotely
+
+To create a production-ready static site:
+
+```bash
+npm ci
+npm run build
+```
+
+Deploy the generated `dist/` directory to any static web host, or copy it to a web server such as Nginx. No application server or backend is required. `npm run preview` is for checking the production build locally, not for running a production service.
 
 ## Tech
 

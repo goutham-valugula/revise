@@ -269,16 +269,15 @@ body {
     radial-gradient(ellipse 34rem 32rem at 4% 2%, rgba(199, 210, 254, .78), transparent 72%),
     radial-gradient(ellipse 35rem 34rem at 100% 8%, rgba(251, 207, 232, .68), transparent 70%),
     radial-gradient(ellipse 39rem 36rem at 46% 100%, rgba(165, 243, 252, .48), transparent 72%),
-    radial-gradient(ellipse 26rem 24rem at 94% 78%, rgba(253, 230, 138, .34), transparent 70%),
-    radial-gradient(circle, rgba(99, 102, 241, .10) 1px, transparent 1.2px);
-  background-size: auto, auto, auto, auto, 30px 30px;
-  background-position: center, center, center, center, 0 0;
+    radial-gradient(ellipse 26rem 24rem at 94% 78%, rgba(253, 230, 138, .34), transparent 70%);
+  background-size: auto, auto, auto, auto;
+  background-position: center, center, center, center;
   animation: aurora-drift 28s ease-in-out infinite alternate;
 }
 
 @keyframes aurora-drift {
-  from { background-position: center, center, center, center, 0 0; }
-  to { background-position: 25px 18px, -20px 28px, 35px -24px, -18px -12px, 0 0; }
+  from { background-position: center, center, center, center; }
+  to { background-position: 25px 18px, -20px 28px, 35px -24px, -18px -12px; }
 }
 
 .topbar {
@@ -511,7 +510,6 @@ h1 em {
 
 @media (max-width: 760px) {
   .app-shell::before {
-    background-size: auto, auto, auto, auto, 24px 24px;
     opacity: .82;
   }
 }

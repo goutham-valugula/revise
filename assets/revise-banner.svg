@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-labelledby="title desc">
+  <title id="title">Revise — Know what changed. Keep the review yours.</title>
+  <desc id="desc">A colorful banner for a private, browser-based tool that compares document revisions line by line.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#eef0ff"/>
+      <stop offset="0.52" stop-color="#fff7fb"/>
+      <stop offset="1" stop-color="#fff6df"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7446d8"/>
+      <stop offset="0.55" stop-color="#e84e9c"/>
+      <stop offset="1" stop-color="#f29a32"/>
+    </linearGradient>
+    <linearGradient id="button" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#7549d8"/>
+      <stop offset="1" stop-color="#c23d88"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#53437a" flood-opacity=".13"/>
+    </filter>
+  </defs>
+  <rect width="1200" height="330" rx="28" fill="url(#background)"/>
+  <circle cx="1100" cy="30" r="160" fill="#efb3da" opacity=".17"/>
+  <circle cx="595" cy="320" r="185" fill="#8fd9d4" opacity=".12"/>
+
+  <g font-family="Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
+    <rect x="54" y="42" width="38" height="38" rx="12" fill="url(#button)"/>
+    <text x="73" y="69" fill="#fff" font-size="24" font-weight="800" text-anchor="middle">R</text>
+    <text x="104" y="69" fill="#26223f" font-size="25" font-weight="800" letter-spacing="-1">revise<tspan fill="#ea5a9b">.</tspan></text>
+
+    <rect x="54" y="108" width="196" height="27" rx="13.5" fill="#fff" fill-opacity=".8" stroke="#fff"/>
+    <circle cx="70" cy="121.5" r="4" fill="#27a58d"/>
+    <text x="83" y="126" fill="#625b83" font-size="11" font-weight="750" letter-spacing="1.4">PRIVATE REVISION REVIEW</text>
+
+    <text x="54" y="184" fill="#1f2039" font-size="40" font-weight="800" letter-spacing="-1.8">Know what changed.</text>
+    <text x="54" y="231" fill="url(#accent)" font-size="40" font-weight="800" letter-spacing="-1.8">Keep the review yours.</text>
+    <text x="56" y="270" fill="#686783" font-size="16">Compare PDF, Word, and text files right in your browser.</text>
+    <text x="56" y="294" fill="#686783" font-size="16">No uploads. No automated verdict. Your judgment stays in charge.</text>
+
+    <g filter="url(#shadow)">
+      <rect x="682" y="54" width="466" height="222" rx="20" fill="#fff" fill-opacity=".91"/>
+      <text x="708" y="84" fill="#312e4e" font-size="13" font-weight="750">REVISION COMPARISON</text>
+      <rect x="1015" y="68" width="105" height="25" rx="12.5" fill="#f0ebff"/>
+      <text x="1067" y="85" text-anchor="middle" fill="#704bd0" font-size="10" font-weight="750">3 CHANGES</text>
+
+      <text x="709" y="118" fill="#9692a7" font-size="9" font-weight="700" letter-spacing="1">EARLIER VERSION</text>
+      <text x="933" y="118" fill="#9692a7" font-size="9" font-weight="700" letter-spacing="1">LATER VERSION</text>
+      <line x1="916" y1="105" x2="916" y2="248" stroke="#eeedf3"/>
+
+      <rect x="700" y="132" width="198" height="29" rx="6" fill="#fff0ed"/>
+      <text x="710" y="151" fill="#cc745c" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Review interval: 12 months</text>
+      <rect x="924" y="132" width="207" height="29" rx="6" fill="#e8f8f3"/>
+      <text x="934" y="151" fill="#278775" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Review interval: 18 months</text>
+
+      <rect x="700" y="169" width="198" height="29" rx="6" fill="#fff0ed"/>
+      <text x="710" y="188" fill="#cc745c" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Owner: Quality lead</text>
+      <rect x="924" y="169" width="207" height="29" rx="6" fill="#e8f8f3"/>
+      <text x="934" y="188" fill="#278775" font-size="11" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">Owner: Document owner</text>
+
+      <line x1="700" y1="215" x2="1130" y2="215" stroke="#f0eef4"/>
+      <circle cx="711" cy="242" r="5" fill="#48aa96"/>
+      <text x="724" y="246" fill="#79768b" font-size="11">Files stay on your device</text>
+      <rect x="988" y="226" width="142" height="31" rx="10" fill="url(#button)"/>
+      <text x="1059" y="246" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">Review changes  →</text>
+    </g>
+  </g>
+</svg>

@@ -1,33 +1,53 @@
-# Revise
+<div align="center">
+  <a href="https://goutham-valugula.github.io/revise/">
+    <img src="assets/revise-banner.svg" alt="Revise — Know what changed. Keep the review yours." width="100%" />
+  </a>
 
-**A local-first document revision comparison tool.** Compare PDFs, Word documents, and text files line by line, review what changed, and export a Markdown summary. Revise is deliberately a text-difference tool—not an automated quality, safety, or compliance verdict.
+  <p><strong>Private, line-by-line document revision review.</strong></p>
+  <p>
+    <a href="https://goutham-valugula.github.io/revise/"><strong>↗ Open the live app</strong></a>
+    &nbsp;·&nbsp;
+    <a href="#run-locally">Run it locally</a>
+    &nbsp;·&nbsp;
+    <a href="https://github.com/goutham-valugula/revise/issues">Report an issue</a>
+  </p>
 
-![Revise comparison workspace](assets/revise-preview.png)
+  <p>
+    <img alt="PDF, DOCX, TXT and Markdown" src="https://img.shields.io/badge/Files-PDF%20%C2%B7%20DOCX%20%C2%B7%20TXT%20%C2%B7%20MD-7248d8?style=flat-square" />
+    <img alt="Local-first" src="https://img.shields.io/badge/Processing-100%25%20in%20your%20browser-168b83?style=flat-square" />
+    <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-f08b64?style=flat-square" /></a>
+  </p>
+</div>
 
-## Why Revise
+## See the latest interface
 
-Comparing procedure and policy revisions often means scanning long documents for small edits. Revise makes those edits easier to find while leaving interpretation and decisions with the reviewer.
+<a href="https://goutham-valugula.github.io/revise/"><img src="assets/revise-preview.png" alt="The current Revise workspace: choose two document revisions, compare them privately, and review the changes." width="100%" /></a>
 
-## Features
+## Know what changed—without handing over your files
 
-- Compare PDF, DOCX, TXT, and Markdown files side by side.
-- Extract selectable PDF text in the browser with PDF.js.
-- See additions, removals, and changed lines with line numbers.
-- Filter to changed lines or search within the comparison.
-- Export a Markdown summary for review notes.
-- Try the included fictional sample without choosing files.
-- Responsive layout with keyboard-friendly controls.
+Revise compares two versions of a document and presents additions, removals, and reworded lines side by side. It helps you focus your review; **you stay responsible for interpreting the changes**.
 
-## Privacy and limitations
+No account or upload is needed. Documents are read and compared in your browser, and Revise has no file-upload backend.
 
-- Files are read and processed in your browser; Revise has no upload service, account system, analytics, or backend.
-- Scanned/image-only PDFs are not OCR'd. Text extraction may omit or flatten tables, columns, images, formatting, or page layout in PDF and Word documents.
-- A text diff cannot determine whether a change is correct, safe, or compliant. Always review the original documents before making decisions.
-- Maximum input file size: 30 MB per document.
+### A quick review flow
+
+1. Add the earlier and later versions—or load the fictional sample to explore the interface.
+2. Scan the line-by-line comparison, search for a phrase, or show changed lines only.
+3. Export a Markdown summary for your review notes.
+
+### Works with
+
+| Format | What Revise reads | Notes |
+| --- | --- | --- |
+| **PDF** | Selectable text | Scanned/image-only PDFs are not OCR'd. |
+| **Word** | Modern `.docx` files | Legacy `.doc` is not supported. Formatting, tracked changes, tables, and images are not preserved. |
+| **Text** | `.txt` and `.md` | Compared as text, line by line. |
+
+Each file can be up to **30 MB**. Extraction can flatten or omit layout, tables, images, or handwriting, so check the source documents before acting on a difference. A text diff cannot decide whether a change is correct, safe, or compliant.
 
 ## Run locally
 
-Requires Node.js 22.13+ (or Node.js 24+).
+Requires Node.js **22.13+** or **24+**.
 
 ```bash
 git clone https://github.com/goutham-valugula/revise.git
@@ -36,31 +56,21 @@ npm ci
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173`). These steps work on any computer with Git and Node.js installed; the repository is public, so no GitHub login is needed.
+Open the local address printed by Vite (usually `http://localhost:5173`). No GitHub sign-in is needed to clone this public repository.
 
-## Supported formats
-
-- **PDF:** compares selectable text; scanned/image-only PDFs require OCR, which Revise does not currently include.
-- **Word:** supports modern `.docx` files. Legacy `.doc` files are not supported. Comparison uses extracted text and does not preserve Word formatting, tracked changes, tables, or images.
-- **Text:** supports `.txt` and `.md` files.
-
-Files are parsed locally in your browser. Revise does not upload them to a server.
-
-## Build and host remotely
-
-To create a production-ready static site:
+## Build and host
 
 ```bash
 npm ci
 npm run build
 ```
 
-Deploy the generated `dist/` directory to any static web host, or copy it to a web server such as Nginx. No application server or backend is required. `npm run preview` is for checking the production build locally, not for running a production service.
+The production-ready static site is written to `dist/`. It can be hosted on GitHub Pages or another static web host; no application server or document backend is required. To preview the build locally, run `npm run preview`.
 
-## Tech
+## Built with
 
-React, TypeScript, Vite, [PDF.js](https://github.com/mozilla/pdf.js), and [jsdiff](https://github.com/kpdecker/jsdiff). Fonts use system stacks; document parsing and comparison require no third-party service.
+React · TypeScript · Vite · [PDF.js](https://github.com/mozilla/pdf.js) · [Mammoth](https://github.com/mwilliamson/mammoth.js) · [jsdiff](https://github.com/kpdecker/jsdiff)
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+[MIT](LICENSE)
